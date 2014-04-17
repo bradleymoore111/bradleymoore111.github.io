@@ -1,0 +1,58 @@
+<html>
+	<head>
+		<title>CAUSE SCIENCE</title>
+		<link rel="stylesheet" type="text/css" href="../css/style.css">
+	</head>
+	<body>
+		<div id="container">
+			<div id="header">
+				<p id="headerTitle"><b>Lets do some encrypting.</b></p>
+			</div>
+			<div id="links">
+				<div id="linksContent">
+					<a href="../index.html">Home</a><br>
+					<a href="../math/index.html">Math</a><br>
+					<a href="../msuic/index.html">Msuic</a><br>
+					<a href="../encryption/index.html">Encryption</a><br>
+				</div>
+			</div>
+			<div id="main">
+				<div id="mainContent">
+					<p>Note that this shit doesn't take capital letters, or numbers.</p>
+					<p>But somehow spaces kinda work. Then Ben fucked it up. Anyways...</p>
+					<p>If you wish to encrypt a message:</p>
+					<form>
+						Message: <input id="encryptMessage" type="text" name="encryptMessage"><br>
+						Key (optional):  <input id="encryptKey" type="text" name="encryptKey"><br>
+						<input id="clickEncrypt" value="Click When Ready" type="button" name="submit" onClick="cclickEncrypt()">
+					</form>
+					<p>If you wish to decrypt a combo:</p>
+					<form>
+						Combo: <input id="decryptCombo" type="text" name="decryptCombo"><br>
+						Key (required): <input id="decryptKey" type="text" name="decryptKey"><br>
+						<input id="clickDecrypt" value="Click When Ready" type="button" name="submit" onClick="cclickDecrypt()">
+					</form>
+					<script src="main.js"></script>
+
+					<a>Your message is: <div id="diffMessage"></div></a>
+					<a>Your combo is: <div id="diffCombo"></div></a>
+					<a>Your key is: <div id="diffKey"></div></a>
+
+					<script>
+						/*document.getElementById("clickEncrypt").onClick*/ cclickEncrypt = function () {
+							document.getElementById("diffMessage").innerText = document.getElementById("encryptMessage").value;
+							document.getElementById("diffCombo").innerText = encryptInput();
+							document.getElementById("diffKey").innerText = document.getElementById("encryptKey").value||key;
+						};
+						/*document.getElementById("clickDecrypt").onClick*/ cclickDecrypt = function(){
+							document.getElementById("diffMessage").innerText = decryptInput();
+							document.getElementById("diffCombo").innerText = document.getElementById("decryptCombo").value;
+							document.getElementById("diffKey").innerText = document.getElementById("decryptKey").value;
+						};
+
+					</script>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,116 @@
+<html>
+	<head>
+		<title>General Math Stuff</title>
+		<link rel="stylesheet" type="text/css" href="../css/style.css">
+		<script src="js/math.js"></script>
+		<script src="js/main.js"></script>	
+	</head>
+	<body>
+		<div id="container">
+			<div id="header">
+				<p id="headerTitle"><b>Just use your calculator.</b></p>
+			</div>
+			<div id="links">
+				<div id="linksContent">
+					<a href="../index.html">Home</a><br>
+					<a href="../math/index.html">Math</a><br>
+					<a href="../msuic/index.html">Msuic</a><br>
+					<a href="../encryption/index.html">Encryption</a><br>
+				</div>
+			</div>
+			<div id="main">
+				<div id="mainContent">
+					<div id="pi">
+						<p>16 Digits of Pi: 3.141592653589793</p>
+					</div>
+					<div id="ln2">
+						<p>Natural logarithm of 2: 0.6931471805599453</p>
+					</div>
+<!--sqrt-->			<div id="sqrt">
+						<script>
+							var sqrtIndex = function () {
+								var sqrtMessage = document.getElementById("sqrtMessage");
+								var sqrtReturn  = document.getElementById("sqrtReturn");
+								sqrtReturn.innerText = math.sqrt(sqrtMessage.value)
+							}
+						</script>
+						<form>
+							Square root of a number: <input id="sqrtMessage" type="text" name="sqrtMessage">
+							<input id="sqrtButton" value="Click Me!" type="button" onClick="sqrtIndex()">
+							<a>Your value is: </a>
+							<a id="sqrtReturn"></a>
+						</form>
+					</div>
+<!--arithMean-->	<div id="arithMean">
+						<script>
+							var arithMeanIndex = function () {
+								var arithMeanMessage1 = document.getElementById("arithMeanMessage1");
+								var arithMeanMessage2 = document.getElementById("arithMeanMessage2");
+								var arithMeanReturn  = document.getElementById("arithMeanReturn");
+								arithMeanReturn.innerText = math.arithMean(parseInt(arithMeanMessage1.value),parseInt(arithMeanMessage2.value))
+							}
+						</script>
+						<form>
+							Arithmetic mean of a number: <input id="arithMeanMessage1" type="text">
+							And a number: <input id="arithMeanMessage2" type="text">
+							<input id="arithMeanButton" value="Click Me!" type="button" onClick="arithMeanIndex()">
+							<a>Your value is: </a>
+							<a id="arithMeanReturn"></a>
+						</form>
+					</div>
+<!--geoMean-->		<div id="geoMean">
+						<script>
+							var geoMeanIndex = function () {
+								var geoMeanMessage1 = document.getElementById("geoMeanMessage1");
+								var geoMeanMessage2 = document.getElementById("geoMeanMessage2");
+								var geoMeanReturn  = document.getElementById("geoMeanReturn");
+								geoMeanReturn.innerText = math.geoMean(parseInt(geoMeanMessage1.value),parseInt(geoMeanMessage2.value))
+							}
+						</script>
+						<form>
+							Geometric mean of a number: <input id="geoMeanMessage1" type="text">
+							And a number: <input id="geoMeanMessage2" type="text">
+							<input id="geoMeanButton" value="Click Me!" type="button" onClick="geoMeanIndex()">
+							<a>Your value is: </a>
+							<a id="geoMeanReturn"></a>
+						</form>
+					</div>	
+<!--solvePoly-->	<div id="solvePolynomials">
+						<script>
+							var totalDegree = 0
+							var solveDegree = function () {
+								totalDegree = 0;
+								var solveDegreeMessage = document.getElementById("solveDegreeMessage");
+								var newDegreeInput = document.getElementById("solveDegreeInput");
+								newDegreeInput.innerHTML = "";
+								document.getElementById("solvePolyReturn").innerText = ""
+								for(degreeInteger=0;degreeInteger<(parseInt(solveDegreeMessage.value)+1);degreeInteger++){
+									newDegreeInput.innerHTML += "<input id='solveDegreeMessage" + degreeInteger + "' type='text'>";
+									totalDegree += 1;
+								}
+							}
+							var solvePoly = function () {
+								var solvePolyReturn = document.getElementById("solvePolyReturn");
+								var solvePolyToRun  = [];
+								solvePolyReturn.innerText = ""
+								for(solvePolyInteger=0;solvePolyInteger<totalDegree;solvePolyInteger++){
+									var solvePolyArray = document.getElementById("solveDegreeMessage"+solvePolyInteger);
+									solvePolyToRun[solvePolyInteger]= parseInt(solvePolyArray.value);
+								}
+								solvePolyReturn.innerText = math.solvePolynomials(solvePolyToRun);
+							}
+						</script>
+						<form>
+							Degree of this equation: <input id="solveDegreeMessage" type="text">
+							<input id="solveDegreeButton" value="Click Me!" type="button" onClick="solveDegree()">
+							Values to enter: <div id="solveDegreeInput"></div>
+							<input id="solvePolyButton" value="Click Me!" type="button" onClick="solvePoly()"><br>
+							<a>Your values are: </a>
+							<a id="solvePolyReturn"></a>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
