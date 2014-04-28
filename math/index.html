@@ -48,7 +48,7 @@
 								var arithMeanMessage1 = document.getElementById("arithMeanMessage1");
 								var arithMeanMessage2 = document.getElementById("arithMeanMessage2");
 								var arithMeanReturn  = document.getElementById("arithMeanReturn");
-								arithMeanReturn.innerText = math.arithMean(parseInt(arithMeanMessage1.value),parseInt(arithMeanMessage2.value))
+								arithMeanReturn.innerText = math.arithMean(parseFloat(arithMeanMessage1.value),parseFloat(arithMeanMessage2.value))
 							}
 						</script>
 						<form>
@@ -65,7 +65,7 @@
 								var geoMeanMessage1 = document.getElementById("geoMeanMessage1");
 								var geoMeanMessage2 = document.getElementById("geoMeanMessage2");
 								var geoMeanReturn  = document.getElementById("geoMeanReturn");
-								geoMeanReturn.innerText = math.geoMean(parseInt(geoMeanMessage1.value),parseInt(geoMeanMessage2.value))
+								geoMeanReturn.innerText = math.geoMean(parseFloat(geoMeanMessage1.value),parseFloat(geoMeanMessage2.value))
 							}
 						</script>
 						<form>
@@ -85,7 +85,7 @@
 								var newDegreeInput = document.getElementById("solveDegreeInput");
 								newDegreeInput.innerHTML = "";
 								document.getElementById("solvePolyReturn").innerText = ""
-								for(degreeInteger=0;degreeInteger<(parseInt(solveDegreeMessage.value)+1);degreeInteger++){
+								for(degreeInteger=0;degreeInteger<(parseFloat(solveDegreeMessage.value)+1);degreeInteger++){
 									newDegreeInput.innerHTML += "<input id='solveDegreeMessage" + degreeInteger + "' type='text'>";
 									totalDegree += 1;
 								}
@@ -96,7 +96,7 @@
 								solvePolyReturn.innerText = ""
 								for(solvePolyInteger=0;solvePolyInteger<totalDegree;solvePolyInteger++){
 									var solvePolyArray = document.getElementById("solveDegreeMessage"+solvePolyInteger);
-									solvePolyToRun[solvePolyInteger]= parseInt(solvePolyArray.value);
+									solvePolyToRun[solvePolyInteger]= parseFloat(solvePolyArray.value);
 								}
 								solvePolyReturn.innerText = math.solvePolynomials(solvePolyToRun);
 							}
