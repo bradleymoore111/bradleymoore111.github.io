@@ -2,11 +2,19 @@
 	<head>
 		<title>General Music Stuff</title>
 		<link rel="stylesheet" type="text/css" href="../css/style.css">
+		<script src="../main.js"></script>
+		<script src="../math.js"></script>
 	</head>
-	<body>
+	<body onLoad="setSizes()">
 		<div id="container">
 			<div id="header">
-				<p id="headerTitle"><b><i>Welcome to my music lab</i> :)</b></p>
+				<script>
+					if(Math.random()<.5){
+						document.getElementById("header").innerHTML = '<p id="headerTitle"><b><i>Welcome to my msuic lab</i> :)</b></p>';
+					} else {
+						document.getElementById("header").innerHTML = '<p id="headerTitle"><b><i>Welcome to my music lab</i> :)</b></p>';
+					}
+				</script>
 			</div>
 			<div id="links">
 				<div id="linksContent">
