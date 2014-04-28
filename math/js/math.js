@@ -1,6 +1,10 @@
 var math = {
+	PI:3.141592653589793,
 	Pi:3.141592653589793,
+	pi:3.141592653589793,
 	LN2:0.6931471805599453,
+	Ln2:0.6931471805599453,
+	ln2:0.6931471805599453,
 	toDecimal:function(givenArray){
 		givenArray[2] = givenArray[0]/givenArray[1];
 		return givenArray[2];
@@ -19,16 +23,21 @@ var math = {
 	simplify:function(givenArray){
 		var topFactors = math.factor(givenArray[0]);
 		var botFactors = math.factor(givenArray[1]);
-		var toReturn = givenArray;
+		var returnArray= givenArray;
 		for(topInteger=0;topInteger<topFactors.length;topInteger++){
-			for(botInteger=0;botInteger<topFactors.length;botInteger++){
-				if(topFactors[topInteger]==botFactors[botInteger]){
-					toReturn[0]/=topFactors[topInteger];
-					toReturn[1]/=topFactors[botInteger];
+			var topFactor = topFactors[topInteger];
+			for(botInteger=0;botInteger<botFactors.length;botInteger++){
+				var botFactor = botFactors[botInteger];
+				if((topFactors[topInteger]==botFactors[botInteger])&&(topFactors[topInteger]!=1)){
+					returnArray[0]/=topFactors[topInteger];
+					returnArray[1]/=botFactors[botInteger];
+
+					topFactors[topInteger] =1;
+					botFactors[botInteger] =1;
 				}
 			}
 		}
-		return toReturn;
+		return returnArray;
 	},
 	arithMean:function(number1,number2){
 		return ((number1+number2)/2);
@@ -50,6 +59,18 @@ var math = {
 			meanInteger+=1;
 		}
 		return geoBound[geoBound.length-1]
+	},
+	factorial:function(number){
+		if(number%1==0){
+			return math.intFactorial(number);
+		}
+	},
+	intFactorial:function(number){
+		var factorialSum = 1;
+		for(factorialInteger=0;factorialInteger<number;factorialInteger++){
+			factorialSum*= number-factorialInteger;
+		}
+		return factorialSum
 	},
 	synthetic:function(system,number){
 		var top=system;var mid=[];var bot=[];
@@ -84,6 +105,19 @@ var math = {
 		factored[factored.length]=number;
 		return factored;
 	},
+	// Almost works
+	primeFactor:function(number){
+		var factored=new Array();
+		var temp;
+		for(primeFactorInteger=2;primeFactorInteger<number;primeFactorInteger++){
+			if(number%primeFactorInteger==0){
+				factored[factored.length]=primeFactorInteger;
+				number/=primeFactorInteger;
+			}
+		}
+		factored[factored.length]=number;
+		return factored;
+	},
 	abs:function(number){
 		if(number<0){
 			return (number*-1);
@@ -106,24 +140,23 @@ var math = {
 
 		var expandedExponent = exponent; // remaking the variable so we can modify it later
 		var timesToTen = 1; // Setting the base for the bottom of the fraction
-		var aftrDecStrng = exponent.toString() // Changing the after decimal to a string
-		var splitAfterDec = aftrDecStrng.split(".") // Spliting up the string in order to acquire the part after the decimal
-		var howManyTimes = splitAfterDec[1].length  // the second part is the after decimal, so number of times to run by ten
-		for (powInt=0;powInt<howManyTimes;powInt++) {
-			expandedExponent *= 10;
-			timesToTen *= 10;
+		var aftrDecStrng = exponent.toString(); // Changing the after decimal to a string
+		var splitAfterDec = aftrDecStrng.split("."); // Spliting up the string in order to acquire the part after the decimal
+		var onlyAfterDec = splitAfterDec[1].split("");
+		for(powInt=0;powInt<onlyAfterDec.length;powInt++){
+			onlyAfterDec[powInt]=parseInt(onlyAfterDec[powInt]);
 		}
-		var newNumber = math.intPow(number,expandedExponent); // Creating the number using the expanded exponent, thought not in fractional form yet
-		/*
-			A current issue we have is that some exponents can get too big.
-			For example, finding 4^1555 returns infinity, which can't have the 4^1/1000 
-			So, if we could simplify instead of 4^1555/1000 which is math.intRad(math.pow(4,1555),1000)
-			Instead if we could simplify the fraction 1555/1000 to 311/200, that would save work
-			And it could be run.
-			I'll put this issue on github
-		*/
-		return math.intRad(newNumber,timesToTen); // Returning the dexpanded expanded number, effectively a number to an exponent. GG
+		var beforeDecInit = math.intPow(number,parseInt(splitAfterDec[0]))
+		var newEnd=[];
+		for(powInt=0;powInt<onlyAfterDec.length;powInt++){
+			var newNum = math.intPow(number,onlyAfterDec[powInt])
+			newEnd[powInt]=math.intRad(newNum,math.intPow(10,powInt+1))
+		}
 
+		for(powInt=0;powInt<newEnd.length;powInt++){
+			beforeDecInit*=newEnd[powInt]
+		}
+		return beforeDecInit;
 	},
 	// exponent must be a positive integer. FOR NOW
 	intPow:function(number,exponent){
@@ -179,6 +212,9 @@ var math = {
 		if(number<0) {
 			return "cannot exist";
 		}
+		if(number%1==0){
+			return math.intRad(number,index);
+		}
 		
 		var final = 2; //this is just our most current answer
 		var guess = 5; //this number starts off the process
@@ -197,8 +233,6 @@ var math = {
 		return final;
 	},
 	// Doesn't work with massive numbers :(
-	intRad:function(number1,root){
-		var initGuess = [1];
 		/* 	
 			A function to return the formula found on http://en.wikipedia.org/wiki/Nth_root_algorithm
 			Left is the inside left of the bracket
@@ -211,6 +245,8 @@ var math = {
 			x_k+1 = the returned number, or the next number in the series
 			A = number1, or the original number to be rooted
 		*/	
+	intRad:function(number1,root){
+		var initGuess = [1];
 		var inside = function (number){ /* 	A function to return the formula found on http://en.wikipedia.org/wiki/Nth_root_algorithm
 											Left is the inside left of the bracket
 											Right is the inside right of the bracket
@@ -219,10 +255,10 @@ var math = {
 											(n-1)x_k = leftInsideIntRad
 										*/	
 			var leftInsideIntRad = (root-1)*number;
-			var rightInsideIntRad = number1/math.pow(number,root-1);
+			var rightInsideIntRad = number1/math.intPow(number,root-1);
 			return (leftInsideIntRad+rightInsideIntRad)/root;
 		}
-		for(i=0;i<100000;i++){
+		for(i=0;i<10000;i++){
 			initGuess=inside(initGuess);
 		}
 		return initGuess;
@@ -235,6 +271,15 @@ var math = {
 	// It's broken
 	ln:function(number,specs){
 		
+	},
+	// Accepts it in degrees
+	sin:function(numberRadian){
+		var number = (numberRadian*math.PI)/180
+		var numberFinal = ( number - (math.intPow(number,3)/6) + (math.intPow(number,5)/120) - (math.intPow(number,7)/5040) + (math.intPow(number,9)/362880) - (math.intPow(number,11)/39916800) )
+ 		return numberFinal
+	},
+	cosine:function(number){
+
 	},
 	rrt:function(first,last){
 		var lastFactors =math.factor(last);
@@ -298,7 +343,7 @@ var math = {
 		for(i=0;i<length;i++){
 			if(a[length-1]==0){
 				origZeros++;
-				legnth-=1;
+				length-=1;
 				zeros[zeros.length]=0;
 			}
 		}	

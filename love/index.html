@@ -1,0 +1,66 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<link rel="stylesheet" type="text/css" href="../css/style.css">
+		<base href=".">
+	<title>LEEK IS LOVE, SPIN IS LIFE</title>
+	<div id="header">
+		<p id="headerTitle"><div style="text-align:center; color:white; font-size:14pt; font-weight:bold">
+	You've been spinning for <span id="time">0:00:07</span>.
+	</div></p>
+	</div>
+	<div id="links" style="height:95%;float:left;">
+		<div id="linksContent">
+			<a href="../index.html">Home</a><br>
+			<a href="../math/index.html">Math</a><br>
+			<a href="../msuic/index.html">Msuic</a><br>
+			<a href="../encryption/index.html">Encryption</a><br>
+			<a href="../love/index.html">Love</a><br>
+		</div>
+	</div>
+
+	<script>
+		var time
+		var output
+
+		function Init(){
+			time = 1;
+			StartTimer()
+		}
+		function convertOutput(){
+			var hours = 0
+			var mins = 0
+			var secs = time
+			
+			while(secs >= 60){
+				secs -= 60;
+				mins += 1;
+			}
+			if(secs < 10){
+				secs = "0" + secs;
+			}
+			while(mins >= 60){
+				mins -= 60;
+				hours += 1;
+			}
+			if(mins < 10){
+				mins = "0" + mins;
+			}
+			output = hours + ":" + mins + ":" + secs;
+		}
+		function StartTimer(){
+			time += 1;
+			convertOutput();
+			document.getElementById("time").innerHTML = output;
+			self.setTimeout("StartTimer()", 1000);
+		}
+	</script>
+
+	<style type="text/css"></style></head>
+	<body onload="javascript:Init()" bgcolor="black" gram_dict="true" style="">
+	<object width="90%" height="93%">
+		<param name="movie" value="loituma.swf">
+		<embed src="loituma.swf" width="90%" height="93%">
+	</object>
+	</body>
+</html>
