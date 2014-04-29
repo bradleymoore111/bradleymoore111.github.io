@@ -2,10 +2,11 @@
 	<head>
 		<title>General Music Stuff</title>
 		<link rel="stylesheet" type="text/css" href="../css/style.css">
-		<script src="../main.js"></script>
-		<script src="../math.js"></script>
+		<script src="../js/main.js"></script>
+		<script src="../js/math.js"></script>
+		<script src="../js/link.js"></script>
 	</head>
-	<body onLoad="setSizes()">
+	<body onLoad="setSizes();loadLinks();">
 		<div id="container">
 			<div id="header">
 				<script>
@@ -16,15 +17,7 @@
 					}
 				</script>
 			</div>
-			<div id="links">
-				<div id="linksContent">
-					<a href="../index.html">Home</a><br>
-					<a href="../math/index.html">Math</a><br>
-					<a href="../msuic/index.html">Msuic</a><br>
-					<a href="../encryption/index.html">Encryption</a><br>
-					<a href="../love/index.html">Love</a><br>
-				</div>
-			</div>
+			<div id="links"></div>
 			<div id="main">
 				<div id="mainContent">
 

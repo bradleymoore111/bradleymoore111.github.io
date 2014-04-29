@@ -2,23 +2,16 @@
 	<head onLoad="setSizes();Init()">
 		<link rel="stylesheet" type="text/css" href="../css/style.css">
 		<title>LEEK IS LOVE, SPIN IS LIFE</title>
-		<script src="../main.js"></script>
-		<script src="../math.js"></script>
+		<script src="../js/main.js"></script>
+		<script src="../js/math.js"></script>
+		<script src="../js/link.js"></script>
 	</head>
-	<body onLoad="setSizes();fuckyouObjects()" id="main">
+	<body onLoad="setSizes();fuckyouObjects();loadLinks();" id="main">
 		<div id="container">
 			<div id="header">
 				<div id="headerTitle">You've been spinning for <span id="time">0:00:00</span>.</div>
 			</div>
-			<div id="links">
-				<div id="linksContent">
-					<a href="../index.html">Home</a><br>
-					<a href="../math/index.html">Math</a><br>
-					<a href="../msuic/index.html">Msuic</a><br>
-					<a href="../encryption/index.html">Encryption</a><br>
-					<a href="../love/index.html">Love</a><br>
-				</div>
-			</div>
+			<div id="links"></div>
 			<script>
 				var time
 				var output
