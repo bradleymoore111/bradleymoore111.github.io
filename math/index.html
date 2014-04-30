@@ -30,7 +30,7 @@
 						</script>
 						<form>
 							Square root of a number: <input id="sqrtMessage" type="text" name="sqrtMessage">
-							<input id="sqrtButton" value="Click Me!" type="button" onClick="sqrtIndex()">
+							<input class="button" id="sqrtButton" value="Click Me!" type="button" onClick="sqrtIndex()">
 							<a>Your value is: </a>
 							<a id="sqrtReturn"></a>
 						</form>
@@ -47,7 +47,7 @@
 						<form>
 							Arithmetic mean of a number: <input id="arithMeanMessage1" type="text">
 							And a number: <input id="arithMeanMessage2" type="text">
-							<input id="arithMeanButton" value="Click Me!" type="button" onClick="arithMeanIndex()">
+							<input class="button" id="arithMeanButton" value="Click Me!" type="button" onClick="arithMeanIndex()">
 							<a>Your value is: </a>
 							<a id="arithMeanReturn"></a>
 						</form>
@@ -64,7 +64,7 @@
 						<form>
 							Geometric mean of a number: <input id="geoMeanMessage1" type="text">
 							And a number: <input id="geoMeanMessage2" type="text">
-							<input id="geoMeanButton" value="Click Me!" type="button" onClick="geoMeanIndex()">
+							<input class="button" id="geoMeanButton" value="Click Me!" type="button" onClick="geoMeanIndex()">
 							<a>Your value is: </a>
 							<a id="geoMeanReturn"></a>
 						</form>
@@ -78,8 +78,12 @@
 								var newDegreeInput = document.getElementById("solveDegreeInput");
 								newDegreeInput.innerHTML = "";
 								document.getElementById("solvePolyReturn").innerText = ""
-								for(degreeInteger=0;degreeInteger<(parseFloat(solveDegreeMessage.value)+1);degreeInteger++){
-									newDegreeInput.innerHTML += "<input id='solveDegreeMessage" + degreeInteger + "' type='text'>";
+								for(degreeInteger=0;degreeInteger<(parseInt(solveDegreeMessage.value)+1);degreeInteger++){
+									if((parseInt(solveDegreeMessage.value)-degreeInteger)>0){
+										newDegreeInput.innerHTML += "<input id='solveDegreeMessage" + degreeInteger + "' type='text'>*x^" + (parseInt(solveDegreeMessage.value)-degreeInteger) + "+ ";
+									}else{
+										newDegreeInput.innerHTML += "<input id='solveDegreeMessage" + degreeInteger + "' type='text'> = 0";
+									}
 									totalDegree += 1;
 								}
 							}
@@ -96,9 +100,9 @@
 						</script>
 						<form>
 							Degree of this equation: <input id="solveDegreeMessage" type="text">
-							<input id="solveDegreeButton" value="Click Me!" type="button" onClick="solveDegree()"><br>
+							<input class="button" id="solveDegreeButton" value="Click Me!" type="button" onClick="solveDegree()"><br>
 							Values to enter: <div id="solveDegreeInput"></div>
-							<input id="solvePolyButton" value="Click Me!" type="button" onClick="solvePoly()"><br>
+							<input class="button" id="solvePolyButton" value="Click Me!" type="button" onClick="solvePoly()"><br>
 							<a>Your values are: </a>
 							<a id="solvePolyReturn"></a>
 						</form>

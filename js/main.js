@@ -17,8 +17,8 @@ function setSizes() {
 	var links = document.getElementById("links").style;
 	var main = document.getElementById("main").style;
 	var temp = {};
-	container.width = (math.floor(sizes.width * 0.9758418740849195)+"px");
-	container.height= (math.floor(sizes.height * 0.9758418740849195)+"px");
+	container.width = (math.floor(sizes.width * 0.987)+"px");
+	container.height= (math.floor(sizes.height * 0.9755)+"px");
 
 	header.width = container.width;
 	header.height = "50px";

@@ -1,11 +1,23 @@
+/*  FFBE00, BF9B30, A67B00, FFCE40, FFDB73
+ *  
+ */
+
 #html
 {
 	background-color:#FFD873;
 }
-
+input
+{
+	width:55px;
+	background-color:#FFD873;
+}
+.button
+{
+	width:70px;
+}
 #container
 {
-	width:100%;
+	min-width:100%;
 	min-height:100%;
 	background-color:#FFD873;
 }
@@ -26,7 +38,6 @@
 
 	#links
 	{
-		height:;
 		float:left;
 		background-color:#BF9730;
 	}
@@ -42,6 +53,7 @@
 	{
 		float:left;
 		background-color:#FFCA40;
+
 	}
 	
 		#mainContent

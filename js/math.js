@@ -200,11 +200,20 @@ var math = {
 			var lowerBound = 1;
 			var upperBound = number;
 			var averageBounds;
-			var specs = number+1000
-			for(sqrtInteger=0;sqrtInteger<specs;sqrtInteger++){
+			var sqrtInteger = 0;
+
+			var looper = [lowerBound,upperBound];
+			var checker= [lowerBound,upperBound];
+
+			while ((!(looper[0]==looper[1]))||(!(checker[0]==checker[1]))) {
 				averageBounds=(lowerBound+upperBound)/2;
 				lowerBound=averageBounds;
 				upperBound=number/lowerBound;
+
+				looper[sqrtInteger%2] = averageBounds;
+				checker[sqrtInteger%2]= upperBound;
+
+				sqrtInteger++;
 			}
 			return averageBounds;
 		}
