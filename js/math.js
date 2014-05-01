@@ -268,11 +268,33 @@ var math = {
 	// Currently only works with clean numbers
 	// Will work on even numbers
 	log:function(number,base){
-
+		if(typeof base == "undefined"){
+			base = 10;
+		}
+		return math.ln(number)/math.ln(base);
 	},
 	// It's broken
-	ln:function(number,specs){
-		
+	ln:function(numberBegin){
+		// I would use math.rad(number,2), except I need a clean number at the end
+		var number=numberBegin;
+		var totZer=0;
+		while(number>=2){
+			totZer++;
+			number/=2;
+		}
+		// Taylor series time!
+		var	lnInt = 1;
+		var total = 0;
+		var loops = [1,0]
+		while(!(loops[1]==loops[0])){
+			total+= (((lnInt+1)%2==0)?1:-1)*math.pow((number-1),lnInt)/lnInt
+			loops[lnInt%2]=total;
+			lnInt+=1;
+		}
+		for(ff=0;ff<totZer;ff++){
+			total+=math.LN2;
+		}
+		return total;
 	},
 	// Accepts it in degrees
 	sin:function(numberDegrees){

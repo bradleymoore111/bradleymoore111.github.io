@@ -69,6 +69,72 @@
 							<a id="geoMeanReturn"></a>
 						</form>
 					</div>	
+<!--pow-->			<div id="pow">
+						<script>
+							var powIndex = function () {
+								var powMessage1 = document.getElementById("powMessage1");
+								var powMessage2 = document.getElementById("powMessage2");
+								var powReturn   = document.getElementById("powReturn");
+								powReturn.innerText = math.pow(parseFloat(powMessage1.value),parseFloat(powMessage2.value));
+							}
+						</script>
+						<form>
+							Eponential value of a number: <input id="powMessage1" type="text">
+							Raised to the power: <input id="powMessage2" type="text">
+							<input class="button" id="powButton" value="Click Me!" type="button" onClick="powIndex()">
+							<a> Your value is: </a>
+							<a id="powReturn"></a>
+						</form>
+					</div>
+<!--rad-->			<div id="rad">
+						<script>
+							var radIndex = function () {
+								var radMessage1 = document.getElementById("radMessage1");
+								var radMessage2 = document.getElementById("radMessage2");
+								var radReturn = document.getElementById("radReturn");
+								radReturn.innerText = math.rad(parseFloat(radMessage1.value),parseFloat(radMessage2.value));
+							}
+						</script>
+						<form>
+							Radical value of a number: <input id="radMessage1" type="text">
+							To the root of a number: <input id="radMessage2" type="text">
+							<input class="button" id="radButton" value="Click Me!" type="button" onClick="radIndex()">
+							<a> Your value is: </a>
+							<a id="radReturn"></a>	 
+						</form>
+					</div>
+<!--ln-->			<div id="ln">
+						<script>
+							var lnIndex = function () {
+								var lnMessage = document.getElementById("lnMessage");
+								var lnReturn   = document.getElementById("lnReturn");
+								lnReturn.innerText = math.ln(parseFloat(lnMessage.value));
+							}
+						</script>
+						<form>
+							Natural Logarithm of a number: <input id="lnMessage" type="text">
+							<input class="button" id="lnButton" value="Click Me!" type="button" onClick="lnIndex()">
+							<a>Your value is: </a>
+							<a id="lnReturn"></a>
+						</form>
+					</div>
+<!--log-->			<div id="log">
+						<script>
+							var logIndex = function () {
+								var logMessage1 = document.getElementById("logMessage1");
+								var logMessage2 = document.getElementById("logMessage2");
+								var logReturn 	= document.getElementById("logReturn");
+								logReturn.innerText = math.log(parseFloat(logMessage1.value),parseFloat(logMessage2.value));
+							}
+						</script>
+						<form>
+							Logarithm of a number: <input id="logMessage1" type="text">
+							With a base (def. 10): <input id="logMessage2" type="text">
+							<input class="button" id="logButton" value="Click Me!" type="button" onClick="logIndex()">
+							<a>Your value is: </a>
+							<a id="logReturn"></a>
+						</form>
+					</div>
 <!--solvePoly-->	<div id="solvePolynomials">
 						<script>
 							var totalDegree = 0
