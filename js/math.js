@@ -268,7 +268,7 @@ var math = {
 	// Currently only works with clean numbers
 	// Will work on even numbers
 	log:function(number,base){
-		if(typeof base == "undefined"){
+		if(isNaN(base)){
 			base = 10;
 		}
 		return math.ln(number)/math.ln(base);
@@ -349,7 +349,7 @@ var math = {
 	},
 	cos:function(numberDegrees){
 		// Conditions
-		/*var number = numberDegrees%360;
+		var number = numberDegrees%360;
 		if(number==0)	{return 0}
 		if(number==30)	{return 1/2}
 		if(number==90)	{return 1}
@@ -357,7 +357,7 @@ var math = {
 		if(number==180)	{return 0}
 		if(number==210)	{return -1/2}
 		if(number==270)	{return -1}
-		if(number==330)	{return -1/2}*/
+		if(number==330)	{return -1/2}
 
 
 		var	number  = numberDegrees*math.PI/180;

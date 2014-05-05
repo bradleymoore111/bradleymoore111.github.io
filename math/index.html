@@ -2,6 +2,7 @@
 	<head>
 		<title>General Math Stuff</title>
 		<link rel="stylesheet" type="text/css" href="../css/style.css">
+		<link rel="icon" type="image/gif" href="../images/trashysweg.png"/>
 		<script src="../js/math.js"></script>
 		<script src="../js/main.js"></script>	
 		<script src="../js/link.js"></script>
@@ -146,7 +147,7 @@
 								document.getElementById("solvePolyReturn").innerText = ""
 								for(degreeInteger=0;degreeInteger<(parseInt(solveDegreeMessage.value)+1);degreeInteger++){
 									if((parseInt(solveDegreeMessage.value)-degreeInteger)>0){
-										newDegreeInput.innerHTML += "<input id='solveDegreeMessage" + degreeInteger + "' type='text'>*x^" + (parseInt(solveDegreeMessage.value)-degreeInteger) + "+ ";
+										newDegreeInput.innerHTML += "<input id='solveDegreeMessage" + degreeInteger + "' type='text'>*x<sup>" + (parseInt(solveDegreeMessage.value)-degreeInteger) + "</sup>+ ";
 									}else{
 										newDegreeInput.innerHTML += "<input id='solveDegreeMessage" + degreeInteger + "' type='text'> = 0";
 									}

@@ -10,16 +10,23 @@
 	<body onLoad="setSizes()">
 		<div id="container">
 			<div id="header">
-				<p id="headerTitle"><b><i>Good morning</i> :)</b></p>
+				<p id="headerTitle"><b>Good morning :)</b></p>
 			</div>
 			<div id="links">
 				<div id="linksContent">
 					<a href="index.html">Home</a><br>
 					<a href="math/index.html">Math</a><br>
-					<a href="msuic/index.html">Msuic</a><br>
+					<a id="msuicLink" href="msuic/index.html">Msuic</a><br>
 					<a href="encryption/index.html">Encryption</a><br>
 					<a href="love/index.html">Love</a><br>
 				</div>
+				<script>
+					if(Math.random()<.5){
+						document.getElementById("msuicLink").innerText = 'Msuic';
+					} else {
+						document.getElementById("msuicLink").innerText = 'Music';
+					}
+				</script>
 			</div>
 			<div id="main">
 				<div id="mainContent">
