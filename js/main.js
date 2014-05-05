@@ -1,3 +1,16 @@
+window.onresize=setSizes;
+window.addEventListener('resize',setSizes);
+function makeScale(pitch,range){
+	var scale="";
+	function newNote (interval) {
+		var temp = pitch*Math.pow(2,interval/12);
+		return temp;
+	}
+	for(i=0;i<(12*range);i++){
+		scale+=(newNote(i)+"<br>");
+	}
+	return scale
+}
 function viewport()	{
 	var e = window
 	, a = 'inner';
