@@ -5,6 +5,8 @@ var math = {
 	LN2:0.6931471805599453,
 	Ln2:0.6931471805599453,
 	ln2:0.6931471805599453,
+	e:2.718281828459045,
+	E:2.718281828459045,
 	toDecimal:function(givenArray){
 		givenArray[2] = givenArray[0]/givenArray[1];
 		return givenArray[2];
@@ -349,6 +351,8 @@ var math = {
 	},
 	cos:function(numberDegrees){
 		// Conditions
+		return math.sin(numberDegrees+90);
+		/*
 		var number = numberDegrees%360;
 		if(number==0)	{return 0}
 		if(number==30)	{return 1/2}
@@ -384,9 +388,9 @@ var math = {
 			}
 			sinInt+=1;
 		}
-		return checker[0]
+		return checker[0]*/
 	},
-	cosine:function(number){
+	calcine:function(number){
 		return math.cos(number);
 	},
 	tan:function(number){
