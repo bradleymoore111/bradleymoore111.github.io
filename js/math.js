@@ -273,10 +273,20 @@ var math = {
 		if(isNaN(base)){
 			base = 10;
 		}
+		// Otherwise running ln of small numbers is slow
+		if(number<1){
+			return -1*math.ln(1/number)/math.ln(base)
+		}
 		return math.ln(number)/math.ln(base);
 	},
 	// It's broken
-	ln:function(numberBegin){
+	ln:function(number){
+		if(number<1){
+			return -1*math.logNatural(1/number)
+		}
+		return math.logNatural(number)
+	},
+	logNatural:function(numberBegin){
 		// I would use math.rad(number,2), except I need a clean number at the end
 		var number=numberBegin;
 		var totZer=0;
