@@ -38,38 +38,95 @@
 					</div>
 <!--arithMean-->	<div id="arithMean">
 						<script>
-							var arithMeanIndex = function () {
-								var arithMeanMessage1 = document.getElementById("arithMeanMessage1");
-								var arithMeanMessage2 = document.getElementById("arithMeanMessage2");
-								var arithMeanReturn  = document.getElementById("arithMeanReturn");
-								arithMeanReturn.innerText = math.arithMean(parseFloat(arithMeanMessage1.value),parseFloat(arithMeanMessage2.value))
+							var totalArithTerms = 0
+							var solveArithTerms = function () {
+								totalArithTerms = 0;
+								var solveArithTermsMessage = document.getElementById("solveArithTermsMessage");
+								var newTermsInput = document.getElementById("solveArithTermsInput");
+								newTermsInput.innerHTML = "";
+								document.getElementById("solvePolyReturn").innerText = ""
+								for(TermsInteger=0;TermsInteger<parseInt(solveArithTermsMessage.value);TermsInteger++){
+									if((parseInt(solveArithTermsMessage.value)-TermsInteger)>0){
+										newTermsInput.innerHTML += "<input id='solveArithTermsMessage" + TermsInteger + "' type='text'> ";
+									}else{
+										newTermsInput.innerHTML += "<input id='solveArithTermsMessage" + TermsInteger + "' type='text'>";
+									}
+									totalArithTerms += 1;
+								}
+							}
+							var arithMean = function () {
+								var arithMeanReturn = document.getElementById("arithMeanReturn");
+								var arithMeanToRun  = [];
+								arithMeanReturn.innerText = ""
+								for(arithMeanInteger=0;arithMeanInteger<totalArithTerms;arithMeanInteger++){
+									var arithMeanArray = document.getElementById("solveArithTermsMessage"+arithMeanInteger);
+									arithMeanToRun[arithMeanInteger]= parseFloat(arithMeanArray.value);
+								}
+								arithMeanReturn.innerText = math.arithMean(arithMeanToRun);
 							}
 						</script>
 						<form>
-							Arithmetic mean of a number: <input id="arithMeanMessage1" type="text">
-							And a number: <input id="arithMeanMessage2" type="text">
-							<input class="button" id="arithMeanButton" value="Click Me!" type="button" onClick="arithMeanIndex()">
-							<a>Your value is: </a>
+							Arithmetic Mean, number of terms to input: <input id="solveArithTermsMessage" type="text">
+							<input class="button" id="solveArithTermsButton" value="Click Me!" type="button" onClick="solveArithTerms()"><br>
+							Values to enter: <div id="solveArithTermsInput"></div>
+							<input class="button" id="arithMeanButton" value="Click Me!" type="button" onClick="arithMean()"><br>
+							<a>Your return is: </a>
 							<a id="arithMeanReturn"></a>
 						</form>
 					</div>
-<!--geoMean-->		<div id="geoMean">
+<!--geoMean-->	<div id="geoMean">
 						<script>
-							var geoMeanIndex = function () {
-								var geoMeanMessage1 = document.getElementById("geoMeanMessage1");
-								var geoMeanMessage2 = document.getElementById("geoMeanMessage2");
-								var geoMeanReturn  = document.getElementById("geoMeanReturn");
-								geoMeanReturn.innerText = math.geoMean(parseFloat(geoMeanMessage1.value),parseFloat(geoMeanMessage2.value))
+							var totalTerms = 0
+							var solveTerms = function () {
+								totalTerms = 0;
+								var solveTermsMessage = document.getElementById("solveTermsMessage");
+								var newTermsInput = document.getElementById("solveTermsInput");
+								newTermsInput.innerHTML = "";
+								document.getElementById("solvePolyReturn").innerText = ""
+								for(TermsInteger=0;TermsInteger<parseInt(solveTermsMessage.value);TermsInteger++){
+									if((parseInt(solveTermsMessage.value)-TermsInteger)>0){
+										newTermsInput.innerHTML += "<input id='solveTermsMessage" + TermsInteger + "' type='text'> ";
+									}else{
+										newTermsInput.innerHTML += "<input id='solveTermsMessage" + TermsInteger + "' type='text'>";
+									}
+									totalTerms += 1;
+								}
+							}
+							var geoMean = function () {
+								var geoMeanReturn = document.getElementById("geoMeanReturn");
+								var geoMeanToRun  = [];
+								geoMeanReturn.innerText = ""
+								for(geoMeanInteger=0;geoMeanInteger<totalTerms;geoMeanInteger++){
+									var geoMeanArray = document.getElementById("solveTermsMessage"+geoMeanInteger);
+									geoMeanToRun[geoMeanInteger]= parseFloat(geoMeanArray.value);
+								}
+								geoMeanReturn.innerText = math.geoMean(geoMeanToRun);
 							}
 						</script>
 						<form>
-							Geometric mean of a number: <input id="geoMeanMessage1" type="text">
-							And a number: <input id="geoMeanMessage2" type="text">
-							<input class="button" id="geoMeanButton" value="Click Me!" type="button" onClick="geoMeanIndex()">
-							<a>Your value is: </a>
+							Geometric Mean, number of terms to input: <input id="solveTermsMessage" type="text">
+							<input class="button" id="solveTermsButton" value="Click Me!" type="button" onClick="solveTerms()"><br>
+							Values to enter: <div id="solveTermsInput"></div>
+							<input class="button" id="geoMeanButton" value="Click Me!" type="button" onClick="geoMean()"><br>
+							<a>Your return is: </a>
 							<a id="geoMeanReturn"></a>
 						</form>
-					</div>	
+					</div>
+<!--arithGeoMean--> <div id="arithGeoMean">
+						<script>
+							var arithGeoMeanIndex = function () {
+								var arithGeoMeanMessage1 = document.getElementById("arithGeoMeanMessage1");
+								var arithGeoMeanMessage2 = document.getElementById("arithGeoMeanMessage2");
+								var arithGeoMeanReturn   = document.getElementById("arithGeoMeanReturn");
+								arithGeoMeanReturn.innerText = math.arithGeoMean(parseFloat(arithGeoMeanMessage1.value),parseFloat(arithGeoMeanMessage2.value));
+							}
+						</script>
+						<form>
+							Arithmetic and Geometric Mean of 2 numbers: <input id="arithGeoMeanMessage1" type="text">  <input id="arithGeoMeanMessage2" type="text">
+							<input class="button" id="arithGeoMeanButton" value="Click Me!" type="button" onClick="arithGeoMeanIndex()">
+							<a> Your value is: </a><a id="arithGeoMeanReturn"></a>
+						</form>
+					</div>
 <!--pow-->			<div id="pow">
 						<script>
 							var powIndex = function () {

@@ -41,23 +41,31 @@ var math = {
 		}
 		return returnArray;
 	},
-	arithMean:function(number1,number2){
-		return ((number1+number2)/2);
+	arithMean:function(array){
+		var total=0;
+		for(arithMeanInt=0;arithMeanInt<array.length;arithMeanInt++){
+			total+=array[arithMeanInt];
+		}
+		return total/array.length;
 	},
-	geoMean:function(number1,number2){
-		return (math.sqrt(number1*number2));
+	geoMean:function(array){
+		var total=1;
+		for(geoMeanInt=0;geoMeanInt<array.length;geoMeanInt++){
+			total*=array[geoMeanInt];
+		}
+		return math.rad(total,array.length);
 	},
 	geoArithMean:function(number1,number2){
 		return arithGeoMean(number1,number2)
 	},
 	// I have to use an array for this, realistically. I could get away with not, but it's not needed
 	arithGeoMean:function(number1,number2){
-		var arithBound=[math.arithMean(number1,number2)];
-		var geoBound=[math.geoMean(number1,number2)];
+		var arithBound=[math.arithMean([number1,number2])];
+		var geoBound=[math.geoMean([number1,number2])];
 		var meanInteger=0
 		while(arithBound[arithBound.length-1]!==geoBound[geoBound.length-1]){
-			arithBound[meanInteger+1]=math.arithMean(arithBound[meanInteger],geoBound[meanInteger]);
-			geoBound[meanInteger+1]=math.geoMean(arithBound[meanInteger],geoBound[meanInteger]);
+			arithBound[meanInteger+1]=math.arithMean([arithBound[meanInteger],geoBound[meanInteger]]);
+			geoBound[meanInteger+1]=math.geoMean([arithBound[meanInteger],geoBound[meanInteger]]);
 			meanInteger+=1;
 		}
 		return geoBound[geoBound.length-1]
