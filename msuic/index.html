@@ -20,8 +20,7 @@
 			</div>
 			<div id="links"></div>
 			<div id="main">
-				<div id="mainContent">
-					<div id="left" style="width:300px;float:left;margin-top:5px;">
+					<div id="mainLeft" style="width:300px;float:left;margin-top:5px;margin-left:10px;margin-bottom:5px">
 						<form>
 							This is temporary, only for a test<br>
 							Pitch <input id="pitch" type="text" name="pitch"><br>
@@ -29,15 +28,16 @@
 							<input class="button" value="Click Me!" type="button" onclick="loadScale()">
 							<script>
 						 		loadScale = function () {
-									document.getElementById("right").innerHTML = makeScale(document.getElementById("pitch").value,document.getElementById("range").value);//scaleLoad()
+									document.getElementById("mainRight").innerHTML = makeScale(document.getElementById("pitch").value,document.getElementById("range").value);//scaleLoad()
+									document.getElementById("main").style.height=document.getElementById("mainRight").offsetHeight+10+"px";
+									setSizes();
 								};
 							</script>
 						</form>
 					</div>
-					<div id="right" style="width:500px;float:left;margin-top:5px;">
+					<div id="mainRight" style="width:500px;float:left;margin-top:5px;">
 
 					</div>
-				</div>
 			</div>
 		</div>
 	</body>

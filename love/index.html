@@ -1,24 +1,17 @@
 <html id="html">
-	<head onLoad="setSizes();Init()">
+	<head>
 		<title>LEEK IS LOVE, SPIN IS LIFE</title>
 		<link rel="stylesheet" type="text/css" href="../css/style.css">
 		<link rel="icon" type="image/gif" href="../images/trashysweg.png"/>
 		<script src="../js/main.js"></script>
 		<script src="../js/math.js"></script>
 		<script src="../js/link.js"></script>
-	</head>
-	<body onLoad="setSizes();fuckyouObjects();loadLinks();" id="main">
-		<div id="container">
-			<div id="header">
-				<div id="headerTitle">You've been spinning for <span id="time">0:00:00</span>.</div>
-			</div>
-			<div id="links"></div>
-			<script>
+		<script>
 				var time
 				var output
 
 				function Init(){
-					time = 1;
+					time = -1;
 					StartTimer()
 				}
 				function convertOutput(){
@@ -49,6 +42,13 @@
 					self.setTimeout("StartTimer()", 1000);
 				}
 			</script>
+	</head>
+	<body onLoad="setSizes();fuckyouObjects();loadLinks();Init();">
+		<div id="container">
+			<div id="header">
+				<div id="headerTitle">You've been spinning for <span id="time">0:00:00</span>.</div>
+			</div>
+			<div id="links"></div>
 			<div id="main">
 				<object id="loitumaObject">
 					<param id="loitumaParam" name="movie" value="loituma.swf">
@@ -56,16 +56,22 @@
 				</object>
 				<script>
 					function fuckyouObjects () {
-						var width =document.getElementById("main").style.width;
-						var height=document.getElementById("main").style.height;
+						var width  = document.getElementById("main").style.width;
+						var height = document.getElementById("main").style.height;
 
-						document.getElementById("loitumaObject").style.width= width
-						document.getElementById("loitumaParam").style.width = width
-						document.getElementById("loitumaEmbed").style.width = width
+						var lObject= document.getElementById("loitumaObject");
+						var lParam = document.getElementById("loitumaParam");
+						var lEmbed = document.getElementById("loitumaEmbed");
 
-						document.getElementById("loitumaObject").style.height= height
-						document.getElementById("loitumaParam").style.height = height
-						document.getElementById("loitumaEmbed").style.height = height
+						lObject.style.width = width;
+						lParam.style.width  = width;
+						lEmbed.style.width  = width;
+						//heh 69
+						lObject.style.height= height;
+						lParam.style.height = height;
+						lEmbed.style.height = height;
+
+						document.getElementById("links").style.height=document.getElementById("loitumaEmbed").offsetHeight+"px";
 					}
 				</script>
 			</div>

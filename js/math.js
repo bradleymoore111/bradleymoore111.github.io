@@ -22,6 +22,20 @@ var math = {
 		console.log(number1);
 		console.log(timesTen);
 	},
+	VtoXY:function(magnitude,angle){
+		var toRe= [];
+		toRe[0] = this.cos(angle)*magnitude;
+		toRe[1] = this.sin(angle)*magnitude;
+		return toRe;
+	},
+	VtoMA:function(x,y){
+		var toRe= [];
+		toRe[0] = this.sqrt(this.pow(x,2)+this.pow(y,2));
+		toRe[1] = (Math.atan(y/x)*180)/this.pi;
+		if(x<0){toRe[1]+=180;}
+		if(toRe[1]<0){toRe[1]+=360}
+		return toRe;
+	},
 	simplify:function(givenArray){
 		var topFactors = math.factor(givenArray[0]);
 		var botFactors = math.factor(givenArray[1]);

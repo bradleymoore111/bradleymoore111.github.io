@@ -16,7 +16,7 @@
 			<div id="main">
 				<div id="mainContent">
 					<div id="pi">
-						<p>128 Digits of Pi: 3.14159265358979323846264338327950288419716939937510582097494459230781640628620899862803482534211706798214808651328230664709384460</p>
+						<p>420 Digits of Pi: 3.14159265358979323846264338327950288419716939937510582097494459230781640628620899862803482534211706798214808651328230664709384460955058223172535940812848111745028410270193852110555964462294895493038196442881097566593344612847564823378678316527120190914564856692346034861045432664821339360726024914127372458700660631558817488152092096282925409171536436789259036001133053054882046652138414695194151160943305727036575959195</p>
 					</div>
 					<div id="ln2">
 						<p>Natural logarithm of 2: 0.6931471805599453</p>
@@ -172,7 +172,7 @@
 						<form>
 							Natural Logarithm of a number: <input id="lnMessage" type="text">
 							<input class="button" id="lnButton" value="Click Me!" type="button" onClick="lnIndex()">
-							<a>Your value is: </a>
+							<a>Your value is: </a>	
 							<a id="lnReturn"></a>
 						</form>
 					</div>
@@ -223,6 +223,40 @@
 							<a id="cosReturn"></a>
 						</form>
 					</div>
+<!--VtoXY-->		<div>
+						<script>
+						var VtoXYIndex = function () {
+							var VtoXYMessage1 = document.getElementById("VtoXYMessage1");
+							var VtoXYMessage2 = document.getElementById("VtoXYMessage2");
+							var VtoXYReturn   = document.getElementById("VtoXYReturn");
+							VtoXYReturn.innerText = math.VtoXY(parseFloat(VtoXYMessage1.value),parseFloat(VtoXYMessage2.value))
+						}
+						</script>
+						<form>
+							X and Y coordinate of a vector given magnitude: <input id="VtoXYMessage1" type="text">
+							and direction in degrees: <input id="VtoXYMessage2" type="text">
+							<input class="button" id="VtoXYButton" value="Click Me!" type="button" onClick="VtoXYIndex()"><br>
+							<a>Your values are: (</a>
+							<a id="VtoXYReturn"></a>)
+						</form>
+					</div>
+<!--VtoMA-->		<div>
+						<script>
+						var VtoMAIndex = function () {
+							var VtoMAMessage1 = document.getElementById("VtoMAMessage1");
+							var VtoMAMessage2 = document.getElementById("VtoMAMessage2");
+							var VtoMAReturn   = document.getElementById("VtoMAReturn");
+							VtoMAReturn.innerText = math.VtoMA(parseFloat(VtoMAMessage1.value),parseFloat(VtoMAMessage2.value))
+						}
+						</script>
+						<form>
+							Magnitude and direction of a vector given (x,y): (<input id="VtoMAMessage1" type="text">
+							<input id="VtoMAMessage2" type="text">)
+							<input class="button" id="VtoMAButton" value="Click Me!" type="button" onClick="VtoMAIndex()"><br>
+							<a>Your values are: (</a>
+							<a id="VtoMAReturn"></a>)
+						</form>
+					</div>
 <!--solvePoly-->	<div id="solvePolynomials">
 						<script>
 							var totalDegree = 0
@@ -264,5 +298,6 @@
 				</div>
 			</div>
 		</div>
+		<!--This page and library was made with assistance from Elie Nehme and Nick Mazuk-->
 	</body>
 </html>

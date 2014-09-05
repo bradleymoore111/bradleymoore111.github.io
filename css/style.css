@@ -13,19 +13,20 @@ input
 }
 .button
 {
-	width:70px;
+	width:76px;
 }
 #container
 {
-	min-width:100%;
-	min-height:100%;
 	background-color:#FFD873;
+	margin: 0 auto;
 }
 
 	#header
 	{
 		float:left;
 		background-color:#FFB800;
+		text-align:center;
+		margin: 0 auto;
 	}
 
 		#headerTitle
@@ -40,12 +41,14 @@ input
 	{
 		float:left;
 		background-color:#BF9730;
+		margin: 0 auto;
 	}
 
 		#linksContent
 		{
 			margin-left:10px;
 			margin-top:5px;
+			margin-bottom:5px;
 			font-size:24;
 		}
 
@@ -53,10 +56,13 @@ input
 	{
 		float:left;
 		background-color:#FFCA40;
-
+		word-wrap:break-word;
+		margin: 0 auto;
 	}
 	
 		#mainContent
 		{
+			margin-top:5px;
 			margin-left:10px;
+			margin-right:10px;
 		}

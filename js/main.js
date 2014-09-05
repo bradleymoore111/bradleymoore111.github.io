@@ -20,37 +20,28 @@ function viewport()	{
 	}
 	return { 
 		width: e[a+'Width'],
-		height: e[a+'Height']
+		height: e[a+'Height'],
 	}
 }
 function setSizes() {
 	var sizes = viewport();
-	var container = document.getElementById("container").style;
-	var header = document.getElementById("header").style;
-	var links = document.getElementById("links").style;
-	var main = document.getElementById("main").style;
-	var temp = {};
-	container.width = (math.floor(sizes.width * 0.987)+"px");
-	container.height= (math.floor(sizes.height * 0.9755)+"px");
+	var container = document.getElementById("container");
+	var header = document.getElementById("header");
+	var links = document.getElementById("links");
+	var main = document.getElementById("main");
+	container.style.width = (math.floor(sizes.width*0.8)+"px");
+	container.style.height= (math.floor(sizes.height*0.975)+"px");
 
-	header.width = container.width;
-	header.height = "50px";
+	header.style.width = container.style.width;
+	header.style.height= "50px";
 
-	links.width = "150px";
-	temp.height = parseInt(container.height.split("p")[0]);
-	temp.height-= 50;
-	links.height = (temp.height+"px");
+	//main.height = links.height;
+	main.style.width   = (math.floor(sizes.width*0.8)-150+"px");
+	if(container.offsetHeight>main.offsetHeight){main.style.height=container.offsetHeight-50+"px"}
+	//main.style.height  = (main.offsetHeight>container.offsetHeight)?console.log("main"):main.style.height="90%";
 
-	main.height = links.height;
-	temp.width  = parseInt(container.width.split("p")[0]);
-	temp.width -= 150;
-	if((temp.width+150)==header.width.split("p")[0]){
-		main.width  = (temp.width+"px");
-	}else{
-		if((temp.width+150)<header.width.split("p")[0]){
-			main.width = ((temp.width+1)+"px");
-		}else{
-			main.width = ((temp.width-1)+"px");
-		}
-	}
+	links.style.width  = "150px";
+	links.style.height = main.offsetHeight+"px";
+
+	container.style.height= main.offsetHeight+50+"px";
 }
