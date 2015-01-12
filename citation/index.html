@@ -1,0 +1,40 @@
+<html id="html">
+	<head>
+		<title>Citation Creator</title>
+		<link rel="stylesheet" type="text/css" href="../css/style.css">
+		<link rel="icon" type="image/gif" href="../images/trashysweg.png"/>
+		<script src="../js/main.js"></script>
+		<script src="../js/math.js"></script>
+		<script src="../js/link.js"></script>
+		<script src="../js/cite.js"></script>
+	</head>
+	<body onLoad="setSizes();loadLinks();">
+		<div id="container">
+			<div id="header">
+				<p id="headerTitle"><b>I did learn something in AP Comp.</b></p>
+			</div>
+			<div id="links"></div>
+			<div id="main">
+				<div id="mainContent">
+					<p>So this is a web functionality tool designed to help you make citations.<br>You can create a single citation, and position it yourself. Don't be lazy.</p>
+					<p>So firstly, select a citation style, and then we'll get started.</p>
+					<select id="styleSelect" onchange="pickStyle()">
+						<option value="none">Please select one...</option>
+						<option value="MLA">MLA</option>
+						<option value="APA">APA</option>
+						<option value="Chicago">Chicago</option>
+						<option value="CSE">CSE</option>
+					</select>
+					<div id="citations">
+						<div id="forms">
+							<p>Please select a style</p>
+						</div>
+						<div id="completedCite" style="width:200px;float:left">
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

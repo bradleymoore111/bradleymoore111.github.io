@@ -1,0 +1,43 @@
+<div id="MLAform" style="width:800px;float:left">
+	<p>
+		All right! Modern American Language WHOOOOOOOOOOOOOOOOOOOOO<br>
+		Information taken from <a href="https://owl.english.purdue.edu/owl/resource/747/12/">Purdue's site</a><br>
+		<select id="TypeSelect" onchange="loadInfo('info')">
+			<option value="none">Please select one...</option>
+			<option value="print">Book</option>
+			<option value="online">Website</option>
+		</select>
+		<div id="info">
+			<form id="contributors">
+				<p>
+					How many contributors were there? 
+					<input id="numContributors" onchange="loadContributors('contributorsInput','numContributors')"><br>
+					(Authors or editors)
+				</p>
+				<div id="contributorsInput">
+					
+				</div>
+			</form>
+			<form id="bookInfo">
+				<p>Book title: <input id="bookTitle" type="text" style="width:500px"></p>
+				<p>
+					Volume: <input id="bookVolume" type="text" style="width:50px">
+					Edition: <input id="bookEdition" type="text" style="width:50px">
+					Chapter Title: <input id="bookChapter" type="text" style="width:100px">
+					Pages: <input id="bookPages" type="text" style="width:50px">
+				</p>
+			</form>
+			<form id="publisherInfo">
+				<p>City: <input id="publisherCity" type="text" style="width:250px"></p>
+				<p>
+					State: <input id="publisherState" type="text" style="width:250px"><br>
+					(If non-US, put country here)
+				</p>
+				<p>Publisher: <input id="publisher" type="text" style="width:250px"></p>
+				<p>Year Published: <input id="publisherYear" type="text" style="width:50px"></p>
+				<input id="makeCitationButton" value="Click Me When Done" type="button" style="width:200px" onClick="makeCitation('MLA','completedCite')">
+			</form>
+			
+		</div>
+	</p>
+</div>

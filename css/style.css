@@ -4,12 +4,12 @@
 
 #html
 {
-	background-color:#FFD873;
+	background-color:#CCFFFF;
 }
 input
 {
 	width:55px;
-	background-color:#FFD873;
+	background-color:#FFFFFF;
 }
 .button
 {
@@ -17,6 +17,7 @@ input
 }
 #container
 {
+	font-size:20;
 	background-color:#FFD873;
 	margin: 0 auto;
 }
@@ -55,7 +56,7 @@ input
 	#main
 	{
 		float:left;
-		background-color:#FFCA40;
+		background-color:#FFFF99;
 		word-wrap:break-word;
 		margin: 0 auto;
 	}

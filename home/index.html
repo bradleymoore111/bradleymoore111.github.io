@@ -1,33 +1,18 @@
 <html id="html">
 	<head>
 		<title>Welcome home :)</title>
-		<link rel="stylesheet" type="text/css" href="css/style.css">
-		<link rel="icon" type="image/gif" href="images/trashysweg.png" />
-		<script src="js/math.js"></script>
-		<script src="js/main.js"></script>
-		<script src="js/link.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/style.css">
+		<link rel="icon" type="image/gif" href="../images/trashysweg.png"/>
+		<script src="../js/main.js"></script>
+		<script src="../js/math.js"></script>
+		<script src="../js/link.js"></script>
 	</head>
-	<body onLoad="setSizes()">
+	<body onLoad="setSizes();loadLinks();">
 		<div id="container">
 			<div id="header">
 				<p id="headerTitle"><b>Good morning :)</b></p>
 			</div>
-			<div id="links">
-				<div id="linksContent">
-					<a href="index.html">Home</a><br>
-					<a href="math/index.html">Math</a><br>
-					<a id="msuicLink" href="msuic/index.html">Msuic</a><br>
-					<a href="encryption/index.html">Encryption</a><br>
-					<a href="love/index.html">Love</a><br>
-				</div>
-				<script>
-					if(Math.random()<.5){
-						document.getElementById("msuicLink").innerText = 'Msuic';
-					} else {
-						document.getElementById("msuicLink").innerText = 'Music';
-					}
-				</script>
-			</div>
+			<div id="links"></div>
 			<div id="main">
 				<div id="mainContent">
 					Welcome to my website! I'm Bradley, and I am a student unofficially learning various programming languages.<br><br>
