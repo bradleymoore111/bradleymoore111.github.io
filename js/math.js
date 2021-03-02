@@ -605,6 +605,28 @@ var m = {
 
 		return m.gcd( b, a%b );
 	},
+	extendedEuclidean:function (a, b) {
+	    if (a == 0) {
+		return [0, 1];
+	    }
+
+	    result = m.extendedEuclidean(b % a, a);
+
+	    return [result[1] - ((b/a) | 0) * result[0], result[0]];
+	},
+	modMultInverse:function(n, m) {
+	    if (m.gcd(n, m) != 1) return null;
+
+	    // Extended Euclidean
+	    // Find some sn + tm = 1, s is the multiplicative inverse of n mod m.
+	    let s = m.extendedEuclid(n, m)[0];
+
+	    while (s < 1) {
+		s += m;
+	    }
+
+	    return s;
+	},
 	modpow:function(b, e, m){
 	    if( m == 1 ){
 	    	return 0;
