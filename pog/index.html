@@ -1,0 +1,285 @@
+<html>
+  <head>
+	<title>Showing/Hiding Stuff</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.2/css/bootstrap-slider.min.css" integrity="sha256-G3IAYJYIQvZgPksNQDbjvxd/Ca1SfCDFwu2s2lt0oGo=" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.2/bootstrap-slider.js" integrity="sha256-59/apVFrosMLFX2dHZLGvb3nPpu7e0Yx1rsDr1dTRrk=" crossorigin="anonymous"></script>
+	<style>
+	  #map {
+		  margin: 0.4%;
+		  height: 98.6%;
+		  width: 99.2%;
+	  }
+
+	  html, body {
+		  height: 95%;
+		  width: 100%;
+		  margin: 0;
+		  padding: 0;
+	  }
+
+	  #map-container-row {
+		  height: 99%;
+		  width: 99%;
+		  margin: 5px;
+		  min-height: 800px;
+	  }
+
+	  /*#floating-panel {
+           position: absolute;
+           top: 10px;
+           left: 25%;
+           z-index: 5;
+           background-color: #fff;
+           padding: 5px;
+           border: 1px solid #999;
+           text-align: center;
+           font-family: 'Roboto','sans-serif';
+           line-height: 30px;
+           padding-left: 10px;
+      }*/
+
+	  #timeline-container {
+		  height: 100%;
+	  }
+
+	  #timeline-container .row {
+		  background-color: beige;
+	  }
+
+	  #info-container {
+		  height: 30%;
+		  margin-bottom: 3%;
+	  }
+
+	  /*#left-timeline-entries {
+		  float: left;
+		  height: 100%;
+		  width: 40%;
+	  }
+
+	  #right-timeline-entries {
+		  float: left;
+		  height: 100%;
+		  width: 40%;
+	  }*/
+
+	  #timeline-slider {
+		  height: 100%;
+		  text-align: center;
+	  }
+
+	  .slider.slider-vertical {
+		  margin-top: 5%;
+		  margin-bottom: 5%;
+		  height: 90%;
+	  }
+
+	  #timeline-slider-year-c {
+		  text-align: center;
+		  margin-top: 30%;
+	  }
+
+	  #timeline-slider-year-c .tooltip {
+		  opacity: 1;
+	  }
+
+	  #timeline-slider-year-c .slider-track {
+		  background: #dfe8f5;
+	  }
+	  
+	  #timeline-slider-year-c .slider-selection {
+		  background: #dfe8f5;
+	  }
+
+	  #timeline-slider-year-c .slider-tick-container .slider-tick.round {
+		  background: #8d9299;
+		  opacity: 1;
+	  }
+
+	  #timeline-slider-year-c .slider-handle {
+		  background: #8f2f2f;
+	  }
+
+	  #primary {
+		  width: 100%;
+		  max-width: 100% !important;
+		  min-height: 800px;
+		  height: 100%;
+	  }
+
+	  #theater-info {
+		  background-color: beige;
+	  }
+
+	  #theater-info-output .list-group .list-group-item a.li-key {
+		  width: 40%;
+	  }
+
+	  #theater-info-output .list-group .list-group-item a.li-val {
+		  width: 60%;
+		  text-align: right;
+	  }
+
+	  #theater-pic {
+		  max-height: 400px;
+		  max-width: 80%;
+		  margin: auto;
+		  display: block;
+		  margin-top: 10px;
+	  }
+
+	  #timeline-events {
+		  padding-right: 5px;
+		  padding-left: 5px;
+	  }
+
+	  #special-event {
+		  margin-top: 5px;
+	  }
+
+	  #special-event .card .card-body {
+		  padding: 0.1rem;
+	  }
+
+	  #timeline-events .row {
+		  max-height: 99%;
+		  margin-left: 0;
+		  margin-right: 0;
+	  }
+
+	  #timeline-events .row .col-6 {
+		  padding-right: 5px;
+		  padding-left: 5px;
+	  }
+
+	  .timeline-event {
+		  margin: 5px;
+	  }
+
+	  .timeline-event .card .card-body {
+		  padding: 0.25rem;
+	  }
+
+	  .tooltip.tooltip-min.right {
+		  display: none;
+	  }
+
+	  .tooltip.tooltip-max.right {
+		  display: none;
+	  }
+	</style>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLGrdl6spR7HQKZ7e4igLlxU4SSdt4rm4" defer></script>
+	<script src="data.js"></script>
+	<script src="main.js"></script>
+  </head>
+  <body>
+	<div id="map-container-row" class="row" style="height: 100%; width: 100%;">
+
+	  <!-- Timeline container -->
+	  <div id="timeline-container" class="col-4 border rounded border-secondary">
+		<div class="row" style="height: 100%">
+		  <div id="timeline-events" class="col-sm-9">
+			<div class="row">
+			  <div class="col-6">
+				<div id="special-event" data-id="-1">
+				  <div class="card">
+					<div class="card-body">
+					  Click events for more details!
+					</div>
+				  </div>
+				</div>
+				<div class="timeline-event" data-id="2"></div>
+				<div class="timeline-event" data-id="4"></div>
+				<div class="timeline-event" data-id="6"></div>
+				<div class="timeline-event" data-id="8"></div>
+				<div class="timeline-event" data-id="10"></div>
+				<div class="timeline-event" data-id="12"></div>
+			  </div>
+			  <div class="col-6">
+				<div class="timeline-event" data-id="1"></div>
+				<div class="timeline-event" data-id="3"></div>
+				<div class="timeline-event" data-id="5"></div>
+				<div class="timeline-event" data-id="7"></div>
+				<div class="timeline-event" data-id="9"></div>
+				<div class="timeline-event" data-id="11"></div>
+			  </div>
+			</div>
+		  </div>
+		  <div id="timeline-slider" class="col-sm-3 d-flex justify-content h-100">
+
+			<input
+			  id="timeline-slider-year"
+			  type="text"
+			  data-slider-id="timeline-slider-year-c"
+			  data-slider-min="1965"
+			  data-slider-max="2005"
+			  data-slider-step="1"
+			  data-slider-orientation="vertical"
+			  data-slider-ticks-labels='["1965", "1975", "1985", "1995", "2005"]'/>
+			
+		  </div>
+		</div>
+	  </div>
+
+	  <!-- Map -->
+	  <div class="col-5">
+		<div class="container mw-100 h-100 w-100 d-flex flex-column border rounded border-secondary">
+
+		  <div id="map-views" class="row">
+			<div class="btn-group w-100" role="group">
+			  <a href="#" class="btn btn-secondary" data-id="ca">California</a>
+			  <a href="#" class="btn btn-secondary" data-id="la">Los Angeles</a>
+			  <a href="#" class="btn btn-secondary" data-id="nc">Northern California</a>
+			  <a href="#" class="btn btn-secondary" data-id="gq">Downtown San Diego</a>
+			</div>
+		  </div>
+		  <div id="map-container" class="h-100 row flex-fill">
+			<div id="map"></div>
+		  </div>
+		</div>
+	  </div>
+
+	  <!-- Information  -->
+	  <div class="col-3">
+		<div class="container-fluid h-100 d-flex flex-column mw-100 w-100 border rounded border-secondary">
+
+		  <div id="theater-title" class="row border-bottom border-secondary">
+			<div class="col-12">
+			  <h3><b id="theater-title-output">Name of theater</b></h3>
+			</div>
+		  </div>
+		  <div id="theater-info" class="row flex-fill border-bottom border-secondary">
+			<div class="col-12">
+			  <div class="container pt-4">
+				<div id="theater-info-output"></div>
+			  </div>
+			</div>
+		  </div>
+		  
+		</div>
+	  </div>
+	  
+	</div>
+
+	<div class="modal fade" tabindex="-1" role="dialog">
+	  <div class="modal-dialog" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<h5 class="modal-title">Modal Title</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+		  </div>
+		  <div class="modal-body">
+			Wattup
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </body>
+</html>
+	

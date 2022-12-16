@@ -1,0 +1,182 @@
+<html>
+  <head>
+	<title>Showing/Hiding Stuff</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.2/css/bootstrap-slider.min.css" integrity="sha256-G3IAYJYIQvZgPksNQDbjvxd/Ca1SfCDFwu2s2lt0oGo=" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.2/bootstrap-slider.js" integrity="sha256-59/apVFrosMLFX2dHZLGvb3nPpu7e0Yx1rsDr1dTRrk=" crossorigin="anonymous"></script>
+	<style>
+	  #map {
+		  margin: 0.4%;
+		  height: 98.6%;
+		  width: 99.2%;
+	  }
+
+	  html, body {
+		  height: 95%;
+		  width: 100%;
+		  margin: 0;
+		  padding: 0;
+	  }
+
+	  /*#floating-panel {
+           position: absolute;
+           top: 10px;
+           left: 25%;
+           z-index: 5;
+           background-color: #fff;
+           padding: 5px;
+           border: 1px solid #999;
+           text-align: center;
+           font-family: 'Roboto','sans-serif';
+           line-height: 30px;
+           padding-left: 10px;
+      }*/
+
+	  #timeline-container {
+		  height: 100%;
+	  }
+
+	  #info-container {
+		  height: 30%;
+		  margin-bottom: 3%;
+	  }
+
+	  /*#left-timeline-entries {
+		  float: left;
+		  height: 100%;
+		  width: 40%;
+	  }
+
+	  #right-timeline-entries {
+		  float: left;
+		  height: 100%;
+		  width: 40%;
+	  }*/
+
+	  #timeline-slider {
+		  height: 100%;
+		  text-align: center;
+	  }
+
+	  .slider.slider-vertical {
+		  margin-top: 5%;
+		  margin-bottom: 5%;
+		  height: 90%;
+	  }
+
+	  #timeline-slider-year-c {
+		  text-align: center;
+		  margin-top: 100%;
+	  }
+
+	  #timeline-slider-year-c .tooltip {
+		  opacity: 1;
+	  }
+
+	  #timeline-slider-year-c .slider-track {
+		  background: pink;
+	  }
+	  
+	  #timeline-slider-year-c .slider-selection {
+		  background: pink;
+	  }
+
+
+	  #timeline-slider-year-c .slider-handle {
+		  background: purple;
+	  }
+
+	  #map-container-row {
+		  min-height: 800px;
+	  }
+
+	  #map-container-row {
+		  min-height: 800px;
+	  }
+
+	  #primary {
+		  width: 100%;
+		  max-width: 100% !important;
+		  min-height: 800px;
+		  height: 100%;
+	  }
+	</style>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLGrdl6spR7HQKZ7e4igLlxU4SSdt4rm4"></script>
+	<script src="data.js"></script>
+	<script src="main.js"></script>
+  </head>
+  <body>
+	<div id="map-container-row" class="row" style="height: 100%; width: 100%;">
+
+	  <!-- Timeline container -->
+	  <div id="timeline-container" class="col-sm-3 border rounded border-secondary">
+		<div class="row" style="height: 100%">
+		  <div id="left-timeline-entries" class="col-sm-5"></div>
+		  <div id="timeline-slider" class="col-sm-2 d-flex justify-content h-100">
+
+			<input
+			  id="timeline-slider-year"
+			  type="text"
+			  data-slider-id="timeline-slider-year-c"
+			  data-slider-min="1965"
+			  data-slider-max="2005"
+			  data-slider-step="1"
+			  data-slider-value="1965"
+			  data-slider-orientation="vertical"
+			  data-slider-ticks-labels='["1965", "1975", "1985", "1995", "2005"]'/>
+			
+		  </div>
+		  <div id="right-timeline-entries" class="col-sm-5"></div>
+		</div>
+	  </div>
+
+	  <!-- Map -->
+	  <div class="col-sm-5">
+		<div class="container mw-100 h-100 w-100 d-flex flex-column border rounded border-secondary">
+
+		  <div id="map-views" class="row">
+			<div class="btn-group w-100" role="group">
+			  <a href="#" class="btn btn-secondary" data-id="ca">California</a>
+			  <a href="#" class="btn btn-secondary" data-id="la">Los Angeles</a>
+			  <a href="#" class="btn btn-secondary" data-id="nc">Northern California</a>
+			  <a href="#" class="btn btn-secondary" data-id="gq">Downtown San Diego</a>
+			</div>
+		  </div>
+		  <div id="map-container" class="h-100 row flex-fill">
+			<div id="map"></div>
+		  </div>
+		</div>
+	  </div>
+
+	  <!-- Information  -->
+	  <div class="col-sm-4">
+		<div class="container-fluid h-100 d-flex flex-column mw-100 w-100 border rounded border-secondary">
+
+		  <div id="theater-title" class="row border-bottom border-secondary">
+			<div class="col-sm-12">
+			  <h3><b id="theater-title-output">Name of theater</b></h3>
+			</div>
+		  </div>
+		  <div id="theater-info" class="row flex-fill border-bottom border-secondary">
+			<div class="col-sm-12">
+			  <div class="container pt-4">
+				<p id="theater-info-output"></p>
+			  </div>
+			</div>
+		  </div>
+		  <div id="theater-pic" class="row">
+			<div class="col-sm-12 mh-100 mw-100 pt-4">
+			  <p><img id="theater-pic-output" class="mh-100 mw-100"></p>
+			</div>
+		  </div>
+		  
+		</div>
+	  </div>
+	  
+	</div>
+  </body>
+</html>
+	

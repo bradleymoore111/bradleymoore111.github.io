@@ -1,0 +1,249 @@
+$(function() {
+    var overlay, map;
+
+    $("#timeline-slider-year").slider({
+	formatter: function(value) {
+	    return "Year: " + value;
+	},
+	ticks: [1965, 1975, 1985, 1995, 2005],
+	ticks_labels: ['1965', '1975', '1985', '1995', '2005']
+    }).on('slideStop', function(e) {
+	setVisibleDates(e.value);
+    }).on('slide', function(e) {
+	setVisibleDates(e.value);
+    });
+
+    function setVisibleDates(year) {
+	for (let i=0; i<data.theaters.length; i++) {
+	    const the = data.theaters[i];
+	    if (the.yearOpened && the.yearClosed) {
+		the.marker.setVisible(
+		    the.yearOpened <= year &&
+			the.yearClosed >= year);
+	    }
+	}
+    }
+
+    function loadTheaterInfo(t) {
+	// Set title to the name + address
+	$("#theater-title-output").text(t.name);
+
+	// Create the information field
+	let s = '<ul class="list-group">';
+	const li = '<li class="list-group-item d-flex w-100 justify-content-between mb-4"><a><b>{0}:</b></a><a>{1}</a></li>';
+
+	s += li.format('Address', t.address);
+	s += li.format('Date Opened', t.yearOpened);
+	s += li.format('Date Closed', t.yearClosed);
+
+	s += '</ul>';
+
+	if (t.notes) {
+	    s += '<p>' + t.notes + '</p>';
+	}
+
+	$("#theater-info-output").html(s);
+
+	// Set picture
+	// for now, picking a random picture.
+	$("#theater-pic-output").attr('src', 'https://trashy111.com/tool/dog' + Math.ceil(Math.random() * 5) + '.jpg');
+    }
+
+    var views = {
+	'ca': {
+	    latLng: new google.maps.LatLng(
+		35.234220115771315,
+		-119.50813158701538),
+	    zoom: 7
+	},
+	'la': {
+	    latLng: new google.maps.LatLng(
+		33.879605865620675,
+		-118.23260258952516),
+	    zoom: 10
+	},
+	'nc': {
+	    latLng: new google.maps.LatLng(
+		36.86887638110575,
+		-120.96947538082001),
+	    zoom: 8
+	},
+	'gq': {
+	    latLng: new google.maps.LatLng(
+		32.712925234935604,
+		-117.1609642744066),
+	    zoom: 18
+	}
+    };
+
+    $("#map-views .btn-group .btn").on('click', function(e) {
+	console.log($(this).data('id'));
+	const view = views[$(this).data('id')];
+	if (!view) {
+	    console.log("Huh.");
+	}
+
+	map.panTo(view.latLng);
+	map.setZoom(view.zoom);
+    });
+
+    function main() {
+	const sleep = (milliseconds) => {
+	    return new Promise(resolve => setTimeout(resolve, milliseconds))
+	}
+
+	Overlay.prototype = new google.maps.OverlayView();
+
+	function initMap() {
+	    console.log("Initing map");
+
+	    const defaultView = views['ca'];
+	    
+	    map = new google.maps.Map(document.getElementById("map"), {
+		zoom: defaultView.zoom,
+		center: defaultView.latLng,
+		mapTypeControl: false,
+		gestureHandling: 'greedy' // greedy, cooperative, auto, or none
+	    });
+
+	    console.log(map);
+	    
+	    // var pussy = "pussy.png"; // 
+	    const pussy = {
+		url: "https://trashy111.com/tool/pussy.png",
+		scaledSize: new google.maps.Size(40, 50),
+		origin: new google.maps.Point(0, 0),
+		anchor: new google.maps.Point(0, 0)
+	    };
+
+	    // Add overlays
+	    for (let i=0; i<data.theaters.length; i++) {
+		// Find the lat/long
+		const the = data.theaters[i];
+		const parts = the.latlong.split(" ");
+		const latLng = new google.maps.LatLng(
+		    parseFloat(parts[0]),
+		    parseFloat(parts[1]));
+		
+		// Okay, instead let's do markers.
+		data.theaters[i].marker = new google.maps.Marker({
+		    position: latLng,
+		    icon: pussy,
+		    map: map,
+		    title: the.name
+		});
+
+		data.theaters[i].marker.addListener('click', function() {
+		    loadTheaterInfo(data.theaters[i]);
+		});
+
+		if (! the.yearOpened || ! the.yearClosed) {
+		    the.marker.setVisible(false);
+		}
+	    }
+
+	    // for (let i=0; i<44; i++) {
+	    // 	setTimeout(function(){
+	    // 	    console.log("Year", 1960 + i);
+	    // 	    setVisibleDates(1960+i);
+	    // 	}, i * 1000);
+	    // }
+	}
+
+	// US Geographical Survey Overlay (it's its ownn object).
+	function Overlay(bounds, image, map) {
+	    this.bounds_ = bounds;
+	    this.image_ = image;
+	    this.map_ = map;
+
+	    this.div_ = null; // null for now, changes in onAdd
+	    this.setMap(map);
+	}
+	Overlay.prototype.onAdd = function() {
+	    var div = document.createElement('div');
+	    div.style.border = 'none';
+	    div.style.borderWidth = '0px';
+	    div.style.position = 'absolute';
+
+	    var img = document.createElement('img');
+	    img.src = this.image_;
+	    img.style.width = '100%';
+	    img.style.height = '100%';
+	    div.appendChild(img);
+
+	    this.div_ = div;
+
+	    var panes = this.getPanes();
+	    panes.overlayImage.appendChild(this.div_);
+	};
+
+	Overlay.prototype.draw = function() {
+	    var overlayProjection = this.getProjection();
+
+	    var sw = overlayProjection.fromLatLngToDivPixel(this.bounds_.getSouthWest());
+	    var ne = overlayProjection.fromLatLngToDivPixel(this.bounds_.getNorthEast());
+
+	    var div = this.div_;
+	    div.style.left = sw.x + 'px';
+	    div.style.top = ne.y + 'px';
+	    div.style.width = (ne.x - sw.x) + 'px';
+	    div.style.height = (sw.y - ne.y) + 'px';
+	};
+
+	Overlay.prototype.onRemove = function() {
+	    this.div_.parentNode.removeChild(this.div_);
+	}
+
+	Overlay.prototype.hide = function() {
+	    if (this.div_) {
+		this.div_.style.visibility = 'hidden';
+	    }
+	};
+
+	Overlay.prototype.show = function() {
+	    if (this.div_) {
+		this.div_.style.visibility = 'visible';
+	    }
+	};
+
+	Overlay.prototype.toggle = function() {
+	    if (this.div_) {
+		if (this.div_.style.visibility === 'hidden') {
+		    this.show();
+		} else {
+		    this.hide();
+		}
+            }
+	};
+
+	Overlay.prototype.toggleDom = function() {
+	    if (this.getMap()) {
+		// Note: setMap(null) calls OverlayView.onRemove()
+		this.setMap(null);
+            } else {
+		this.setMap(this.map_);
+            }
+	};
+
+	initMap();
+
+	setVisibleDates(1965);
+    }    
+
+
+    main();
+
+});
+
+// First, checks if it isn't implemented yet.
+if (!String.prototype.format) {
+  String.prototype.format = function() {
+    var args = arguments;
+    return this.replace(/{(\d+)}/g, function(match, number) { 
+      return typeof args[number] != 'undefined'
+        ? args[number]
+        : match
+      ;
+    });
+  };
+}
