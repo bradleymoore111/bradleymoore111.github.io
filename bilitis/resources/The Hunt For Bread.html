@@ -1,0 +1,98 @@
+
+<!-- saved from url=(0067)file:///C:/Users/bradl/Documents/Github/bilitis/index.html?level=13 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+		<title>The Hunt For Bread</title>
+	</head>
+	<body style="background-color: rgb(36, 36, 36);color: rgb(191, 191, 191); padding-top:60px;">
+		<div id="banner" class="hidden" onclick="hideBanner();">
+			<h1 id="banner-title">Police Raid</h1>
+			<div style="display: flex; align-items: flex-start;">
+				<img id="banner-lefticon" style="width: 20%; visibility: hidden;">
+				<div style="width: 80%; font-size: 24px; padding: 5px">
+					<p id="banner-content">Rikki opens up the back door, and screams for everyone to run. You'd never been chased by police before, let alone done something so outright against the law. An ignorant law, but still the law. You look at your options, what do you want to do?</p>
+					<div id="banner-options"><span style="border: 1px solid black; padding: 5px; margin-bottom: 10px; color: black; background-color: lightgrey; border-radius: 5px; cursor: pointer; font-family: Roboto; font-weight: 500; font-style: italic;">Attempt to run away with everyone else.</span><span style="border: 1px solid black; padding: 5px; margin-bottom: 10px; color: black; background-color: lightgrey; border-radius: 5px; cursor: pointer; font-family: Roboto; font-weight: 500; font-style: italic;">Turn yourself in.</span></div>
+				</div> 
+				<img id="banner-righticon" style="width: 20%; visibility: hidden;">
+			</div>
+		</div>
+		<audio autoplay="false" muted="" preload="" id="audio" loop="">
+			<source id="chase-background" src="./resources/chase-background.mp3">
+		</audio>
+		<div style="margin: auto; width: 1204px">
+			<canvas id="canvas" width="1000" height="400"></canvas>
+			<canvas id="inventory_canvas" style="border: 1px solid #000000; float: left;" width="200" height="400"></canvas>
+		</div>
+		<div id="container" style="width: 1000;height: 50;margin: 0 auto">
+			<div id="level-information-div" style="width: 1000px; float: left; text-align: left;">
+				<div style="width:1000;height:60;float:left;border-bottom:2px solid #000000">
+					<h2 id="level-title" style="text-align:center;">Maud's Study</h2>
+				</div>
+				<div style="width:1000;float:left;margin-right:3px">
+					<a id="level-discussion" style="font-size:20px;">What is happening? Police are all over the place.</a>
+				</div>
+			</div>
+			<div id="tools-div" style="width: 250;height: 50;float: left">
+				<a id="tools" href="file:///C:/Users/bradl/Documents/Github/bilitis/builder/index.html">World Builder</a>
+				<a>
+					<!-- Debug stuff -->
+					<form onsubmit="javascript:changeLevel();return false;">
+						Change Level: <input id="levelInput" type="text" name="levelInput">
+					</form>
+				</a>
+			</div> 
+		</div>
+		<style>
+			body, html{
+				margin: 0px;
+				padding: 0px;
+				text-align: center;
+			}
+			#banner{
+				padding-bottom: 10px;
+				color: white;
+				/*margin-top: -50%;*/
+				width: 100%;
+				position: absolute;
+				top: 40%;
+				background: rgba(50,50,50,0.6);
+			}
+			#canvas {
+				border:1px solid #000000;
+				float: left;
+			}
+			#banner-options {
+				text-align: right;
+				padding-right: 30%;
+				padding-left: 30%;
+				display: flex;
+				flex-direction: column;
+				align-items: flex-end;
+				font-size: 22px;
+			}
+			#level-discussion, #bread-discussion{
+				text-align: left;
+			}
+			.hidden{
+				display: none;
+			}
+			img {
+				image-rendering: -moz-crisp-edges;         /* Firefox */
+			    image-rendering:   -o-crisp-edges;         /* Opera */
+			    image-rendering: -webkit-optimize-contrast;/* Webkit (non-standard naming) */
+			    image-rendering: crisp-edges;
+			    -ms-interpolation-mode: nearest-neighbor;  /* IE (non-standard property) */
+				image-rendering: pixelated;
+			}
+		</style>
+		<script src="./The Hunt For Bread_files/vars.js.download"></script>
+		<script src="./The Hunt For Bread_files/textures.js.download"></script>
+		<script src="./The Hunt For Bread_files/music.js.download"></script>
+		<script src="./The Hunt For Bread_files/data.js.download"></script>
+		<script src="./The Hunt For Bread_files/entities.js.download"></script>
+		<script src="./The Hunt For Bread_files/world.js.download"></script>
+		<script src="./The Hunt For Bread_files/inventory.js.download"></script>
+		<script src="./The Hunt For Bread_files/info.js.download"></script>
+		<script src="./The Hunt For Bread_files/dialogue.js.download"></script>
+		<script src="./The Hunt For Bread_files/main.js.download"></script>
+	
+</body></html>

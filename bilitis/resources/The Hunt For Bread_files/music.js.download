@@ -1,0 +1,22 @@
+const songs = {
+	chase: document.getElementById("chase-background")
+};
+
+const audio = document.getElementById("audio");
+audio.muted = true;
+audio.loop = true;
+let prevSong = null;
+function updateMusic() {
+	const msuic = world[level].msuic;
+	if (!msuic) {
+		audio.pause();
+	} else if (prevSong != msuic) {
+		const play = (e) => {
+			prevSong = msuic;
+			audio.play();
+		}
+		document.body.addEventListener("click", play, false);
+		// document.body.addEventListener("keydown", play, false);
+		// document.body.addEventListener("keyup", play, false);
+	}
+}

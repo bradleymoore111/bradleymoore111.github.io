@@ -1,0 +1,132 @@
+<html>
+	<head>
+		<title>Bilitis</title>
+	</head>
+	<body style="background-color: rgb(36, 36, 36);color: rgb(191, 191, 191); padding-top:60px;">
+		<h1>Bilitis</h1>
+		<h3>History 306 Final Project - Sydney Salinda</h3>
+		<div id="banner" class="hidden" onclick="hideBanner();">
+			<h2 id="banner-title"></h2>
+			<div style="display: flex; align-items: flex-start;">
+				<img id="banner-lefticon" style="width: 20%;">
+				<div style="width: 80%; font-size: 24px; padding: 5px">
+					<p id="banner-content"></p>
+					<div id="banner-options"></div>
+				</div> 
+				<img id="banner-righticon" style="width: 20%;">
+			</div>
+		</div>
+		<div id="canvas-container">
+			<canvas id="canvas"></canvas>
+			<canvas id="inventory_canvas" style="border: 1px solid #000000; float: left;"></canvas>
+		</div>
+		<div id="container">
+			<div id="level-information-div" style="width: 1000;float: left;text-align:center;">
+				<div style="width:1000px; border-bottom:2px solid #000000">
+					<h2 id="level-title" style="text-align:center;"></h2>
+				</div>
+				<div style="width:1000px; margin-right:3px">
+					<a id="level-discussion" style="font-size:20px;"></a>
+				</div>
+				<div style="width:1000px; margin-top:20px; font-size:19px;">
+					<span href="#" id="skip-level" class="option" onclick="world[level].skipLevel()">Skip Level (Current # of skips: 0)</span>
+				</div>
+			</div>
+			<div id="tools-div" style="width: 250;height: 50;float: left;">
+				<a id="tools" href="./builder/index.html">World Builder</a>
+				<a>
+					<!-- Debug stuff -->
+					<form onsubmit="javascript:changeLevel();return false;">
+						Change Level: <input id="levelInput" type="text" name="levelInput">
+					</form>
+				</a>
+			</div> 
+		</div>
+		<style>
+			#canvas-container {
+				width: 100%;
+				display: flex;
+				justify-content: center;
+			}
+			#container {
+				display: flex;
+				justify-content: center;
+				width: 100%;
+			}
+			#tools-div {
+				display: none;
+			}
+			canvas {
+				border: 1px solid black;
+			}
+			body, html{
+				margin: 0px;
+				padding: 0px;
+				text-align: center;
+			}
+			#banner{
+				padding-bottom: 10px;
+				color: white;
+				/*margin-top: -50%;*/
+				width: 100%;
+				position: absolute;
+				top: 40%;
+				background: rgba(50,50,50,0.6);
+			}
+			#banner-options {
+				padding-right: 20px;
+				text-align: right;
+				padding-left: 20px;
+				display: flex;
+				flex-direction: column;
+				align-items: flex-end;
+				font-size: 22px;
+			}
+			.hidden{
+				display: none;
+			}
+			img {
+				image-rendering: -moz-crisp-edges;         /* Firefox */
+			    image-rendering:   -o-crisp-edges;         /* Opera */
+			    image-rendering: -webkit-optimize-contrast;/* Webkit (non-standard naming) */
+			    image-rendering: crisp-edges;
+			    -ms-interpolation-mode: nearest-neighbor;  /* IE (non-standard property) */
+				image-rendering: pixelated;
+			}
+
+			footer {
+				margin-top: 100px;
+				padding: 20px;
+				text-align: center;
+			}
+
+			span.option {
+				border: 1px solid black;
+				padding: 5px;
+				margin-bottom: 10px;
+				color: black;
+				background-color: lightgrey;
+				border-radius: 5px;
+				cursor: pointer;
+				font-family: "Roboto";
+				font-weight: 500;
+				font-style: italic;
+			}
+		</style>
+		<script src="js/skips.js"></script>
+		<script src="js/vars.js"></script>
+		<script src="js/textures.js"></script>
+		<script src="js/data.js"></script>
+		<script src="js/entities.js"></script>
+		<script src="js/world.js"></script>
+		<script src="js/inventory.js"></script>
+		<script src="js/info.js"></script>
+		<script src="js/dialogue.js"></script>
+		<script src="js/main.js"></script>
+		<footer id="footer">
+			<p>To those using this game for educational purposes, the story is based on real locations and the experiences of real people but fictionalized to represent the experiences of the LGBTQ+ community in the late 60s and early 70s. Please refer to sources if interested in learning more!</p>
+			<p>An annotated bibliography for this game can be found <a href="./resources/bibliography.pdf" target="_blank">here</a>.</p>
+			<address><p>Contact <a href="mailto:salindasydney@gmail.com">salindasydney@gmail.com</a> for questions, concerns, or help.</p></address>
+		</footer>
+	</body>
+</html>

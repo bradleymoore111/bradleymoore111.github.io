@@ -1,0 +1,173 @@
+<html>
+	<head>
+		<title>The Hunt For Bread</title>
+	</head>
+	<body>
+		<div id="loadingBar">
+			<a id="loadingSpot"></a>
+			<script>
+				function runStuff(){
+					if(itemsLoaded < itemsTotal){
+						setTimeout(runStuff, 10);
+						var percent = ((itemsLoaded*1000/itemsTotal) | 0)/10;
+						document.getElementById("loadingSpot").innerText = percent + "% loading complete";
+					}
+				}
+			</script>
+			<!-- 
+
+				// possible code for updating loading bar? Either way I'll figure it out
+				function runStuff(){
+					setTimeout(runStuff,60000);
+					var scales = ["C","C#","D","Eb","E","F","F#","G","G#","A","Bb"];
+
+					var s = "Time to play\nMelodic Minor ";
+					s+= scales[Math.floor(Math.random()*12)];
+					alert(s);
+				}
+			-->
+		</div>
+		<div id="banner" class="hidden" onclick="hideBanner();"></div>
+		<div style="width: 1010px;">
+			<canvas id="canvas" style="border:1px solid #000000;float:left"></canvas>
+			<div id="usefulInfo" style="border:1px solid #000000;float:left"></div>
+			<br>
+			<div id="addsomething" style="width: 300;float: left;">
+				<a>
+					<!-- Debug stuff -->
+					Select a background?<br>
+					<select id="possible-background">
+					</select><br>
+					Add an element?<br>
+					<form onsubmit="javascript:return false;">
+						<select id="addsomething-dropdown">
+							<option value="boxes">Box</option>
+							<option value="noJumps">Icy Wall</option>
+							<option value="neurotoxin">Neurotoxin</option>
+							<option value="spikes">Spikes</option>
+							<option value="critters">Horizontal Critter</option>
+							<option value="bugs">Vertical Bug</option>
+							<option value="cubes">Cube</option>
+							<option value="plates">Plate</option>
+							<option value="fields">Field</option>
+							<option value="keys">Key</option>
+							<option value="doors">Door</option>
+							<option value="spawn">Spawn</option>
+							<option value="goal">Goal</option>
+							<option value="bread">Bread</option>
+						</select><br><br>
+
+						<div id="customInput"></div>
+
+						<br>
+						<input class="button" id="addEntityButton" value="Submit!" type="button" onClick="addElement()">
+					</form>
+				</a>
+
+				<a href="../index.html">Game</a><br><br>
+				<form>
+					<input class="button" id="resetButton" value="Reset World" type="button" onClick="clearWorld()"><br>
+
+					<input class="button" id="getCustomWorld" value="Get World Copy Pasta" type="button" onClick="putWorldIntoDiv()">
+					<div id="worldOutput" style="border-style: solid;border-radius:10px;word-wrap:break-word;"></div>
+
+					<script>
+						function putWorldIntoDiv(){
+							document.getElementById("worldOutput").innerText = "\nCopy Pasta: \n\n"+worldObject()+";";
+						}
+					</script>
+				</form>
+			</div>
+			<div id="modsomething" style="width: 300;float: left;">
+				<a>
+					<!-- Debug stuff -->
+					Modify an element?<br>
+					<form onsubmit="javascript:return false;">
+						<select id="modify-dropdown">
+							<option value="name">Name</option>
+							<option value="background">Background Image</option>
+							<option value="boxes">Box</option>
+							<option value="noJumps">Icy Wall</option>
+							<option value="neurotoxin">Neurotoxin</option>
+							<option value="spikes">Spikes</option>
+							<option value="critters">Horizontal Critter</option>
+							<option value="bugs">Vertical Bug</option>
+							<option value="cubes">Cube</option>
+							<option value="plates">Plate</option>
+							<option value="fields">Field</option>
+							<option value="keys">Key</option>
+							<option value="doors">Door</option>
+							<option value="spawn">Spawn</option>
+							<option value="goal">Goal</option>
+							<option value="bread">Bread</option>
+						</select><br><br>
+
+						What's the ID of your element? (if there's only one in there use 0)
+						<input id='element-id' type='text' name='element-id' style='width: 50px'><br><br>
+
+						<div id="customModding"></div>
+
+						<br>
+						<input class="button" id="resetButton" value="Push Changes!" type="button" onClick="modElement()">
+						<br>
+						<input class="button" id="resetButton" value="Delete this" type="button" onClick="delElement()">
+					</form>
+				</a>
+			</div>
+		</div>
+		<div id="container" style="width: 1200;height: 50">
+			<div id="entity-information-div" style="width: 300;float: left">
+				<p id="name"></p>
+				<p id="background"></p>
+				<p id="spawn"></p>
+				<p id="critters"></p>
+				<p id="bugs"></p>
+				<p id="bread"></p>
+				<p id="cubes"></p>
+				<p id="keys"></p>				
+			</div>
+			<div id="world-information-div" style="width: 300;float:left">
+				<p id="boxes"></p>
+				<p id="noJumps"></p>
+				<p id="neurotoxin"></p>
+				<p id="spikes"></p>
+				<p id="plates"></p>
+				<p id="fields"></p>
+				<p id="doors"></p>
+				<p id="goal"></p>
+			</div>
+		</div>
+		<style>
+			body, html{
+				margin: 0 auto;
+				padding: 0px;
+				text-align: center;
+			}
+			#container{
+				margin: 0 auto;
+				text-align: center;
+			}
+			#world-information-div, #entity-information-div, #addsomething, #modsomething {
+				text-align: left;
+			}
+			#banner{
+				color: white;
+				/*margin-top: -50%;*/
+				width: 100%;
+				position: fixed;
+				top: 50%;
+				background: rgba(0,0,0,0.5);
+			}
+			.hidden{
+				display: none;
+			}
+		</style>
+		<script src="js/vars.js"></script>
+		<script src="js/textures.js"></script>
+		<script src="js/data.js"></script>
+		<script src="js/entities.js"></script>
+		<script src="js/world.js"></script>
+		<script src="js/io.js"></script>
+		<script src="js/main.js"></script>
+	</body>
+</html>
