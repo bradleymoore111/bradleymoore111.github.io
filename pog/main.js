@@ -1,7 +1,7 @@
 $(function() {
     let overlay, map, prevClicked = null;
     //const imageSource = "";
-    const imageSource = "https://trashy111.com/tool/";
+    const imageSource = "https://bradleymoore111.github.io/pog/";
     const defaultYear = 1965;
 
     const styledMap = new google.maps.StyledMapType(
@@ -13,7 +13,7 @@ $(function() {
 	scaledSize: new google.maps.Size(40, 50),
 	origin: new google.maps.Point(0, 0),
 	anchor: new google.maps.Point(20, 25)
-    };
+    }; //
 
     const specialPussy = {
 	url: trashyImage("special-pussy.png"),
